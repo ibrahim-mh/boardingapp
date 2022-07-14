@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomePage {
 
-  constructor(public translate: TranslateService) {
+  constructor() {
 
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
   }
 
 }

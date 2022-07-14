@@ -2,7 +2,7 @@
   <ion-menu side="start" content-id="main-content">
     <ion-header>
       <ion-toolbar translucent>
-        <ion-title>Menu</ion-title>
+        <ion-title>{{'APP.Menu' | translate}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -11,7 +11,7 @@
           <ion-item (click)="sidemenuClick(p)" [routerDirection]="'root'" [routerLink]="[p.url]"  [routerLinkActive]="['active-menu']">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
             <ion-label class="menu-name">
-              {{p.title}}
+              {{'APP.'+p.title | translate}}
             </ion-label>
           </ion-item>
         </ion-menu-toggle>
@@ -19,7 +19,7 @@
           [class.active-parent]="p.open" detail="false">
           <ion-icon slot="start" [name]="p.icon"></ion-icon>          
           <ion-label class="menu-name">
-            {{p.title}}
+            {{'APP.'+p.title | translate}}
           </ion-label>
           <ion-icon  slot="end" name="arrow-down" *ngIf="p.open"></ion-icon>
           <ion-icon  slot="end" name="arrow-forward-outline" *ngIf="!p.open"></ion-icon>
@@ -29,7 +29,8 @@
             <ion-item  style="padding-left: 20px;" *ngFor="let sub of p.children" (click)="sidemenuClick(p)" [routerDirection]="'root'" [routerLink]="[sub.url]"  [routerLinkActive]="['active-menu']">
               <ion-icon slot="start" [name]="sub.icon"></ion-icon>
               <ion-label class="menu-name">
-                {{sub.title}}
+                {{'APP.'+sub.title.substring(0,sub.title.length-1) | translate}}
+                {{sub.title.substring(sub.title.length-1,sub.title.length)}}
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -51,15 +52,14 @@
       </ion-list> -->
     </ion-content>
   </ion-menu>
-
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Home</ion-title> 
-        <ion-select interface="popover" slot="end" [value]="translate.currentLang" #langSelect [placeholder]="'HOME.SELECT' | translate" (ionChange)="translate.use(langSelect.value)">
+        <ion-title>{{'APP.Home' | translate}}</ion-title> 
+        <ion-select interface="popover" slot="end" [value]="translate.currentLang" #langSelect [placeholder]="'APP.SELECT' | translate" (ionChange)="changeLang(langSelect.value)">
           <ion-select-option *ngFor="let lang of translate.getLangs()" [value]="lang"
           >{{ lang }}
           </ion-select-option>
@@ -67,8 +67,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-     
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+      <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-content>
   </div>
 </ion-app>

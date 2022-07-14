@@ -1,7 +1,15 @@
-{
+{   
+    "APP":{
+      "Menu":"Menu",
+      "Home": "Home",
+      "About": "About",
+      "Contact": "Contact",
+      "Gallery": "Gallery",
+      "Setting": "Setting",
+      "sub-menu": "sub-menu"
+    },
     "HOME": {
-      "TITLE": "Hello Angular with ngx-translate!",
-      "SELECT": "Change language"
+      "TITLE": "Hello Angular with ngx-translate!"
     }
   }
   

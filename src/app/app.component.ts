@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -9,11 +11,23 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   appPages=[];
-  constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'ar']);
-    translate.setDefaultLang('ar');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+  constructor(public translate: TranslateService,
+              @Inject(DOCUMENT) private doc
+              ) {
+    const lang =localStorage.getItem('lang');
+    translate.addLangs(['ar', 'en']);
+    if(lang){
+      translate.setDefaultLang(lang);
+      if (lang === 'ar') {
+        document.documentElement.dir = 'rtl';
+      } else {
+        document.documentElement.dir = 'ltr';
+      }
+      this.translate.use(lang);
+    } else {
+      const browserLang = translate.getBrowserLang();
+      translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+    }
     this.appPages = [
       { title: 'Home', url: 'home', icon: 'home' },
       { title: 'About', url: '/about', icon: 'people' },
@@ -31,5 +45,9 @@ export class AppComponent implements OnInit {
   }
   sidemenuClick(p){
     console.log(p);
+  }
+  changeLang(lang){
+    localStorage.setItem('lang',lang);
+    window.location.reload();
   }
 }
