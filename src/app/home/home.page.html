@@ -1,5 +1,28 @@
+<!-- <div id="container">
+  <h2>{{ 'HOME.TITLE' | translate }}</h2>
+</div> -->
+<ion-content class="ion-padding">
+    <!-- <ion-slides [options]="slideOpts" pager="true" >
+    <ion-slide>
+          <img src="assets/1.jpg" alt=”slide-1” />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/2.jpg" alt=”slide-2” />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/3.jpg" alt=”slide-3” />
+    </ion-slide>
+  </ion-slides> -->
+    <swiper  [config]="{ slidesPerView: 1}" [dir]="translate.currentLang === 'ar'? 'rtl' : 'ltr'" >
+      <ng-template swiperSlide>
+        <img src="assets/1.jpg" alt=”slide-1” />
+      </ng-template>
+      <ng-template swiperSlide>
+        <img src="assets/2.jpg" alt=”slide-2” />
+      </ng-template>
+      <ng-template swiperSlide>
+        <img src="assets/3.jpg" alt=”slide-3” />
+      </ng-template>
+    </swiper>
+  </ion-content>
 
-
-  <div id="container">
-    <h2>{{ 'HOME.TITLE' | translate }}</h2>
-  </div>
