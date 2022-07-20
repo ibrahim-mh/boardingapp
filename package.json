@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ionic serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,8 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/platform-server": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@gilsdav/ngx-translate-router": "^4.0.1",
+    "@gilsdav/ngx-translate-router-http-loader": "^2.0.0",
     "@ionic/angular": "^6.1.9",
     "@ionic/angular-server": "^6.1.14-dev.11657720710.1df41c89",
     "@ionic/cordova-builders": "^6.1.0",
