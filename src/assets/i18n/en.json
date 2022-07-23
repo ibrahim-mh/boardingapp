@@ -6,7 +6,8 @@
       "Contact": "Contact",
       "Gallery": "Gallery",
       "Setting": "Setting",
-      "sub-menu": "sub-menu"
+      "sub-menu": "sub-menu",
+      "SELECT":"Select"
     },
     "HOME": {
       "TITLE": "Hello Angular with ngx-translate!"

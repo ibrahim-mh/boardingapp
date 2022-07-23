@@ -1,0 +1,26 @@
+<nav>
+  <ul>
+    <li *ngFor="let p of pages">
+      <a *ngIf="p.url" (click)="sidemenuClick(p)" [routerDirection]="'root'" [routerLink]="[p.url]"  [routerLinkActive]="['active-menu']">
+        {{p.title}}</a>
+      <a *ngIf="!p.url">
+        {{p.title}}
+      </a>
+      <ul *ngIf="!p.url">
+        <li *ngFor="let subp of p.children">
+          <a *ngIf="subp.url" (click)="sidemenuClick(subp)" [routerDirection]="'root'" [routerLink]="[subp.url]"  [routerLinkActive]="['active-menu']">
+            {{subp.title}}</a>
+          <a *ngIf="!subp.url">
+            {{subp.title}}
+          </a>
+          <ul *ngIf="!subp.url">
+            <li *ngFor="let subsub of subp.children">
+              <a *ngIf="subsub.url" (click)="sidemenuClick(subsub)" [routerDirection]="'root'" [routerLink]="[subsub.url]"  [routerLinkActive]="['active-menu']">
+                {{subsub.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

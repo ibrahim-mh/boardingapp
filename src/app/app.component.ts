@@ -1,9 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute,ParamMap,Params, Router  } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { element } from 'protractor';
-// import { DOCUMENT } from '@angular/common';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +11,17 @@ import { switchMap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   appPages=[];
+  web=false;
   constructor(
     public translate: TranslateService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-              ) {
+    public platform: Platform) {
+    const ios = platform.is('ios');
+    const android = platform.is('android');
+    if(!ios && !android){
+      this.web=true;
+    }
     translate.addLangs(['ar', 'en']);
     // const browserLang = this.translate.getBrowserLang();
     translate.setDefaultLang('en');
@@ -28,7 +32,6 @@ export class AppComponent implements OnInit {
     this.selectedIndex = 1;
     setTimeout(() => {
       const path=this.router.url.split('/');
-      console.log(this.router.url);
       this.appPages = [
         { title: 'Home', url: path[1]+'/home', icon: 'home' },
         { title: 'About', url: path[1]+'/about', icon: 'people' },
@@ -38,7 +41,12 @@ export class AppComponent implements OnInit {
      children: [
             { title: 'sub-menu1', url: path[1]+'/sub-menu1', icon: 'images' },
             { title: 'sub-menu2', url: path[1]+'/sub-menu2', icon: 'images' },
-            { title: 'sub-menu3', url: path[1]+'/sub-menu3', icon: 'images' }
+            { title: 'sub-menu3', url: path[1]+'/sub-menu3', icon: 'images' },
+            { title: 'sub-menu4', url: '', icon: 'settings' ,children: [
+                { title: 'sub-sub-menu1', url: path[1]+'/sub-sub-menu1', icon: 'images' },
+                { title: 'sub-sub-menu2', url: path[1]+'/sub-sub-menu2', icon: 'images' },
+                { title: 'sub-sub-menu3', url: path[1]+'/sub-sub-menu3', icon: 'images' },
+       ]}
      ]}];
     }, 100);
 
